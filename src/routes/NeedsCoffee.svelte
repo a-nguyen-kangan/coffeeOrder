@@ -2,34 +2,44 @@
   import { createEventDispatcher } from "svelte";
 
   let nameInput;
-  let selectedOption = "";
+  let selectCoffeeType = "";
   let selectSize = "";
   let errorMessage = "";
 
   // Create the event dispatcher
   const dispatch = createEventDispatcher();
 
-  function buttonHandler() {
+  function buttonClickHandler() {
+    
+    if(checkEmptyFields()) {
+        alert((errorMessage = "Please enter a value or select an option"));
+    } else {
+        dispatchMessage();
+    }
+  }
+
+  function dispatchMessage() {
     // Dispatch an event with a custom name
     dispatch("coffeeMessage", {
       name: nameInput,
-      type: selectedOption,
+      type: selectCoffeeType,
       size: selectSize,
     });
   }
 
-  function handleButtonClick() {
-    if (!nameInput && !selectedOption) {
-      alert((errorMessage = "Please enter a value or select an option"));
+  // return true if any fields are empty.  false if none are empty
+  function checkEmptyFields() {
+    if (!nameInput || !selectCoffeeType || !selectSize) {
+      return true;
     } else {
-      buttonHandler();
+      return false;
     }
   }
 </script>
 
 <input type="text" bind:value={nameInput} placeholder="Enter your name" />
 
-<select bind:value={selectedOption}>
+<select bind:value={selectCoffeeType}>
   <option value="">Select an option</option>
   <option value="Cappuccino">Cappuccino</option>
   <option value="Latte">Latte</option>
@@ -44,5 +54,5 @@
   <option value="Small">Small</option>
 </select>
 
-<p>Selected option: {selectedOption}</p>
-<button on:click={handleButtonClick}>Order Coffee</button>
+<p>Selected option: {selectCoffeeType}</p>
+<button on:click={buttonClickHandler}>Order Coffee</button>
