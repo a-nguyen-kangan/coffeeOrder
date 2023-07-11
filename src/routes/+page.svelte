@@ -5,7 +5,7 @@
 	let order = '';
 
 	function handleCoffee(event) {
-		order = event.detail.name + " ordered a " + event.detail.type;
+		order = event.detail.name + " ordered a " + event.detail.size + ' ' + event.detail.type;
 	}
 	
 </script>
