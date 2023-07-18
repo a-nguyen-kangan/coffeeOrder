@@ -56,3 +56,11 @@
 
 <p>Selected option: {selectCoffeeType}</p>
 <button on:click={buttonClickHandler}>Order Coffee</button>
+<style>
+  p{
+    color:red;
+  }
+  button{
+    color: blue;
+  }
+</style>
