@@ -36,7 +36,7 @@
     }
   }
 </script>
-
+<div>
 <input type="text" bind:value={nameInput} placeholder="Enter your name" />
 
 <select bind:value={selectCoffeeType}>
@@ -56,3 +56,11 @@
 
 <p>Selected option: {selectCoffeeType}</p>
 <button on:click={buttonClickHandler}>Order Coffee</button>
+</div>
+
+<style>
+  div {
+    max-width: 80%;
+    background-color: beige;
+  }
+  </style>
